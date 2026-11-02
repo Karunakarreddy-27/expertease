@@ -37,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const ensureAdminUser = async () => {
-  const adminEmail = process.env.ADMIN_EMAIL;
+  const adminEmail = (process.env.ADMIN_EMAIL || '').trim().toLowerCase();
   const adminPassword = process.env.ADMIN_PASSWORD;
 
   if (!adminEmail || !adminPassword) {
